@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Shelves } from '../components';
+import { Shelves, Loader } from '../components';
 
 import * as API from '../services/BooksAPI';
 
 const shelves = [
-    { name: 'Currently Reading', shelf: 'currentlyReading' },
-    { name: 'Want to Read', shelf: 'wantToRead' },
-    { name: 'Read', shelf: 'read' }
+    { id: 'currentlyReading', name: 'Currently Reading' },
+    { id: 'wantToRead', name: 'Want to Read' },
+    { id: 'read', name: 'Read' }
 ];
 
 interface Props { }
 interface State {
-    bookList: []
+    bookList: any[],
+    loading: boolean
 }
 
 export default class Main extends Component<Props, State> {
@@ -21,39 +22,52 @@ export default class Main extends Component<Props, State> {
         super(props);
 
         this.state = {
-            bookList: []
+            bookList: [],
+            loading: false
         }
     }
 
     async componentDidMount() {
-        const bookList = await API.getAll();
-        this.setState({ bookList });
+        this.setState(oldState => ({
+            loading: !oldState.loading
+        }));
+
+        const list = await API.getAll();
+
+        this.setState(oldState => ({
+            loading: !oldState.loading,
+            bookList: list
+        }));
+    }
+
+    renderShelves = bookList => {
+        return shelves.map(shelf => {
+
+            const list = bookList.length ? bookList.filter(b => b.shelf === shelf.id) : bookList;
+
+            return (
+                <Shelves
+                    key={shelf.name}
+                    name={shelf.name}
+                    bookList={list}
+                />
+            )
+        });
     }
 
     render() {
-        const { bookList } = this.state;
+        const { bookList, loading } = this.state;
 
         return (
             <div className="list-books">
 
-                <div className="list-books-content">
-                    {
-                        shelves.map(shelve => {
-                            const list = bookList.filter(b => b.shelf === shelve.shelf);
-                            console.log(list);
-                            // return <Shelves
-                            //     key={shelve.name}
-                            //     name={shelve.name}
-                            //     bookList={list}
-                            // />;
-                        })
-                    }
-                </div>
+                {loading ? <Loader text="Loading..." /> : this.renderShelves(bookList)}
 
                 <div className="open-search">
                     <Link to="/search" />
                 </div>
-            </div>
+
+            </div >
         )
     }
 }

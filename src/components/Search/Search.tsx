@@ -19,10 +19,10 @@ export default class Search extends Component<Props, State> {
         }
     }
 
-    handleChange = async (evt) => {
+    handleChange = async evt => {
         const value = evt.target.value;
 
-        const result = value && value.length > 3 ? await API.search(value) : [];
+        const result = value.length > 3 ? await API.search(value) : [];
 
         this.setState({ bookList: result });
     }

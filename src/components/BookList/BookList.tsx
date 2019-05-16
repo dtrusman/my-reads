@@ -4,7 +4,7 @@ import { BookItem, SearchItem } from '..';
 export type ITEM_TYPE = "book" | "search";
 
 interface Props {
-    list: [];
+    list: any[];
     type: ITEM_TYPE
 }
 

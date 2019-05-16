@@ -3,7 +3,7 @@ import { BookList } from '..';
 
 interface Props {
     name: string;
-    bookList: []
+    bookList: any[]
 }
 
 export default class Shelves extends Component<Props> {
@@ -12,13 +12,15 @@ export default class Shelves extends Component<Props> {
         const { name, bookList } = this.props;
 
         return (
-            <div className="bookshelf">
-                <h2 className="bookshelf-title">{name}</h2>
-                <div className="bookshelf-books">
-                    <BookList
-                        list={bookList}
-                        type="book"
-                    />
+            <div className="list-books-content">
+                <div className="bookshelf">
+                    <h2 className="bookshelf-title">{name}</h2>
+                    <div className="bookshelf-books">
+                        <BookList
+                            list={bookList}
+                            type="book"
+                        />
+                    </div>
                 </div>
             </div>
         )

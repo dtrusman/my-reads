@@ -7,3 +7,4 @@ export { default as BookList } from './BookList/BookList';
 export { default as BookItem } from './BookItem/BookItem';
 export { default as SearchItem } from './SearchItem/SearchItem';
 export { default as Card } from './Card/Card';
+export { default as Loader } from './Loader/Loader';
