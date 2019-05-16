@@ -4,7 +4,7 @@ import { Shelf, Loader } from '../components';
 
 import * as API from '../services/BooksAPI';
 
-const shelves = [
+export const SHELVES = [
     { id: 'currentlyReading', name: 'Currently Reading' },
     { id: 'wantToRead', name: 'Want to Read' },
     { id: 'read', name: 'Read' }
@@ -41,7 +41,7 @@ export default class Main extends Component<Props, State> {
     }
 
     renderShelves = bookList => {
-        return shelves.map(shelf => {
+        return SHELVES.map(shelf => {
 
             const list = bookList.length ? bookList.filter(b => b.shelf === shelf.id) : bookList;
 

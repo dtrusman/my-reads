@@ -63,3 +63,8 @@
 .add-book:hover {
     background-color: rgb(0, 102, 0);
 }
+
+.book-cover {
+    width: 128px;
+    height: 193px;
+}
