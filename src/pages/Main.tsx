@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Shelves, Loader } from '../components';
+import { Shelf, Loader } from '../components';
 
 import * as API from '../services/BooksAPI';
 
@@ -46,7 +46,7 @@ export default class Main extends Component<Props, State> {
             const list = bookList.length ? bookList.filter(b => b.shelf === shelf.id) : bookList;
 
             return (
-                <Shelves
+                <Shelf
                     key={shelf.name}
                     name={shelf.name}
                     bookList={list}

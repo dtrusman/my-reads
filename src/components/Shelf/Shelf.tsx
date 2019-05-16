@@ -6,7 +6,7 @@ interface Props {
     bookList: any[]
 }
 
-export default class Shelves extends Component<Props> {
+export default class Shelf extends Component<Props> {
 
     render() {
         const { name, bookList } = this.props;
