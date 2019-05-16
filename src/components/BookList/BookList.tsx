@@ -15,18 +15,12 @@ export default class BookList extends Component<Props> {
         return type === 'book' ? <BookItem key={item.id} item={item} /> : <SearchItem key={item.id} item={item} />
     }
 
-    renderEmptyList = () => {
-        return <div> Empty list </div>
-    }
-
     render() {
         const { list } = this.props;
 
         return (
             <ol className="books-grid">
                 {list.length > 0 && list.map(this.renderItem)}
-
-                {list.length === 0 && this.renderEmptyList()}
             </ol>
         )
     }

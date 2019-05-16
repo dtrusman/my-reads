@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Header, Search } from './components';
+import { Header } from './components';
 import { Route } from 'react-router-dom';
 import './App.css';
-import Main from './pages/Main';
+import { Main, Search } from './pages';
 
 const title = 'My Reads';
 
