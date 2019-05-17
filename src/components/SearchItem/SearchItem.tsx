@@ -1,4 +1,5 @@
 import React from 'react';
+import * as API from '../../services/BooksAPI';
 import { Card, Changer } from '..';
 
 interface Props {
@@ -9,9 +10,10 @@ const SearchItem = (props: Props) => {
 
     const { item } = props;
 
-    const handleClick = () => {
+    const handleChangeShelf = async evt => {
         const { item } = props;
-        console.log('click search item', item);
+        const shelfID = evt.target.value;
+        await API.update(item, shelfID);
     }
 
     return (
@@ -22,7 +24,7 @@ const SearchItem = (props: Props) => {
             </div>
             <div className="changer-container">
                 <div className="add-book-container">
-                    <Changer />
+                    <Changer enableNone={false} onChooseOption={handleChangeShelf} />
                 </div>
             </div>
         </Card>

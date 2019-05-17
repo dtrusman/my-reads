@@ -14,6 +14,10 @@
     outline: none;
 }
 
+.search-icon:hover {
+    background-color: rgb(192, 197, 196);
+}
+
 .empty-list {
     text-align: center;
     text-transform: uppercase;

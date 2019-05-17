@@ -7,7 +7,8 @@ import * as API from '../services/BooksAPI';
 export const SHELVES = [
     { id: 'currentlyReading', name: 'Currently Reading' },
     { id: 'wantToRead', name: 'Want to Read' },
-    { id: 'read', name: 'Read' }
+    { id: 'read', name: 'Read' },
+    { id: 'none', name: 'None' }
 ];
 
 interface Props { }

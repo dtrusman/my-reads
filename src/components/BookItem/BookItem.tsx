@@ -8,6 +8,10 @@ interface Props {
 
 export default class BookItem extends Component<Props> {
 
+    handleChangeShelf = () => {
+        console.log('change book item');
+    }
+
     render() {
         const { item } = this.props;
 
@@ -16,7 +20,7 @@ export default class BookItem extends Component<Props> {
                 <div className="book-top">
                     <img className="book-cover" src={item.imageLinks.thumbnail} alt={item.title} />
                     <div className="book-shelf-changer">
-                        <Changer />
+                        <Changer onChooseOption={this.handleChangeShelf} />
                     </div>
                 </div>
                 <div className="book-title">{item.title}</div>
