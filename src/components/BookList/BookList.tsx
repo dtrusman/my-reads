@@ -5,14 +5,15 @@ export type ITEM_TYPE = "book" | "search";
 
 interface Props {
     list: any[];
-    type: ITEM_TYPE
+    type: ITEM_TYPE;
+    updateBookList?: any;
 }
 
 export default class BookList extends Component<Props> {
 
     renderItem = item => {
-        const { type } = this.props;
-        return type === 'book' ? <BookItem key={item.id} item={item} /> : <SearchItem key={item.id} item={item} />
+        const { type, updateBookList } = this.props;
+        return type === 'book' ? <BookItem key={item.id} item={item} updateItem={updateBookList} /> : <SearchItem key={item.id} item={item} />
     }
 
     render() {

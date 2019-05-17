@@ -41,6 +41,14 @@ export default class Main extends Component<Props, State> {
         }));
     }
 
+    updateList = async (item, shelfId) => {
+        await API.update(item, shelfId);
+
+        const list = await API.getAll();
+
+        this.setState({ bookList: list });
+    }
+
     renderShelves = bookList => {
         return SHELVES.map(shelf => {
 
@@ -51,6 +59,7 @@ export default class Main extends Component<Props, State> {
                     key={shelf.name}
                     name={shelf.name}
                     bookList={list}
+                    onUpdateList={this.updateList}
                 />
             )
         });

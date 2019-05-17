@@ -3,13 +3,14 @@ import { BookList } from '..';
 
 interface Props {
     name: string;
-    bookList: any[]
+    bookList: any[];
+    onUpdateList?: any;
 }
 
 export default class Shelf extends Component<Props> {
 
     render() {
-        const { name, bookList } = this.props;
+        const { name, bookList, onUpdateList } = this.props;
 
         return (
             <div className="list-books-content">
@@ -19,6 +20,7 @@ export default class Shelf extends Component<Props> {
                         <BookList
                             list={bookList}
                             type="book"
+                            updateBookList={onUpdateList}
                         />
                     </div>
                 </div>

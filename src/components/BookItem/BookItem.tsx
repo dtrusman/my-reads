@@ -1,31 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Changer } from '..'
 import './BookItem.css';
 
 interface Props {
     item: any;
+    updateItem?: any;
 }
 
-export default class BookItem extends Component<Props> {
+const BookItem = (props: Props) => {
 
-    handleChangeShelf = () => {
-        console.log('change book item');
+    const { item, updateItem } = props;
+
+    const handleChangeShelf = async evt => {
+        const shelfID = evt.target.value;
+        updateItem(item, shelfID);
     }
 
-    render() {
-        const { item } = this.props;
-
-        return (
-            <div className="book">
-                <div className="book-top">
-                    <img className="book-cover" src={item.imageLinks.thumbnail} alt={item.title} />
-                    <div className="book-shelf-changer">
-                        <Changer onChooseOption={this.handleChangeShelf} />
-                    </div>
+    return (
+        <div className="book">
+            <div className="book-top">
+                <img className="book-cover" src={item.imageLinks.thumbnail} alt={item.title} />
+                <div className="book-shelf-changer">
+                    <Changer onChooseOption={handleChangeShelf} />
                 </div>
-                <div className="book-title">{item.title}</div>
-                <div className="book-authors">{item.authors}</div>
             </div>
-        )
-    }
+            <div className="book-title">{item.title}</div>
+            <div className="book-authors">{item.authors}</div>
+        </div>
+    )
 }
+
+export default BookItem;
