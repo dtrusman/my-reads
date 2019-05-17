@@ -7,13 +7,14 @@ interface Props {
     list: any[];
     type: ITEM_TYPE;
     updateBookList?: any;
+    loadingItem?: boolean;
 }
 
 export default class BookList extends Component<Props> {
 
     renderItem = item => {
-        const { type, updateBookList } = this.props;
-        return type === 'book' ? <BookItem key={item.id} item={item} updateItem={updateBookList} /> : <SearchItem key={item.id} item={item} />
+        const { type, updateBookList, loadingItem } = this.props;
+        return type === 'book' ? <BookItem key={item.id} item={item} updateItem={updateBookList} loading={loadingItem} /> : <SearchItem key={item.id} item={item} />
     }
 
     render() {

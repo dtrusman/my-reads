@@ -14,7 +14,8 @@ export const SHELVES = [
 interface Props { }
 interface State {
     bookList: any[],
-    loading: boolean
+    loading: boolean,
+    loadingItem: boolean
 }
 
 export default class Main extends Component<Props, State> {
@@ -24,7 +25,8 @@ export default class Main extends Component<Props, State> {
 
         this.state = {
             bookList: [],
-            loading: false
+            loading: false,
+            loadingItem: false
         }
     }
 
@@ -42,15 +44,21 @@ export default class Main extends Component<Props, State> {
     }
 
     updateList = async (item, shelfId) => {
+        this.setState({ loadingItem: true });
+
         await API.update(item, shelfId);
 
         const list = await API.getAll();
 
-        this.setState({ bookList: list });
+        this.setState({ bookList: list, loadingItem: false });
     }
 
     renderShelves = bookList => {
-        return SHELVES.map(shelf => {
+        const { loadingItem } = this.state;
+
+        const shelves = SHELVES.filter(s => s.id !== 'none');
+
+        return shelves.map(shelf => {
 
             const list = bookList.length ? bookList.filter(b => b.shelf === shelf.id) : bookList;
 
@@ -60,6 +68,7 @@ export default class Main extends Component<Props, State> {
                     name={shelf.name}
                     bookList={list}
                     onUpdateList={this.updateList}
+                    loadingItem={loadingItem}
                 />
             )
         });
