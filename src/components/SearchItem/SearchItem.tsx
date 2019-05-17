@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button } from '..';
+import { Card, Changer } from '..';
 
 interface Props {
     item: any;
@@ -20,8 +20,10 @@ const SearchItem = (props: Props) => {
             <div className="image-container">
                 <img className="image" src={item.imageLinks.thumbnail} alt={item.title} />
             </div>
-            <div className="add-book-container">
-                <Button className="add-book" onClick={handleClick} />
+            <div className="changer-container">
+                <div className="add-book-container">
+                    <Changer />
+                </div>
             </div>
         </Card>
     )

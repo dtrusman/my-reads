@@ -10,13 +10,11 @@ const Changer = () => {
     }
 
     return (
-        <div className="book-shelf-changer">
-            <select>
-                <option key="move" value="move" disabled>Move to...</option>
-                { renderOptions() }
-                <option key="none" value="none">None</option>
-            </select>
-        </div>
+        <select>
+            <option key="move" value="move" disabled>Move to...</option>
+            {renderOptions()}
+            <option key="none" value="none">None</option>
+        </select>
     )
 }
 
