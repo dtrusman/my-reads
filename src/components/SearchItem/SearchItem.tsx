@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as API from '../../services/BooksAPI';
 import { Card, Changer, Loader } from '..';
 
+import './SearchItem.css';
 interface Props {
     item: any;
 }
@@ -21,10 +22,13 @@ export default class SearchItem extends Component<Props, State> {
     }
 
     handleChangeShelf = async evt => {
-        this.setState({ loading: true });
         const { item } = this.props;
+        
+        this.setState({ loading: true });
+
         const shelfID = evt.target.value;
         await API.update(item, shelfID);
+        
         this.setState({ loading: false });
     }
 
@@ -32,7 +36,7 @@ export default class SearchItem extends Component<Props, State> {
         const { item } = this.props;
 
         return (
-            <Card>
+            <div className="book-search-container">
                 <div className="card-title">{item.title}</div>
                 <div className="image-container">
                     <img className="image" src={item.imageLinks.thumbnail} alt={item.title} />
@@ -42,13 +46,17 @@ export default class SearchItem extends Component<Props, State> {
                         <Changer enableNone={false} onChooseOption={this.handleChangeShelf} />
                     </div>
                 </div>
-            </Card>
+            </div>
         )
     }
 
     render() {
         const { loading } = this.state;
 
-        return loading ? <Card><Loader text="Adding book..." /></Card> : this.renderBook()
+        return (
+            <Card>
+                { loading ? <Loader text="Adding book..." /> : this.renderBook() }
+            </Card>
+        )
     }
 }
