@@ -28,7 +28,7 @@ export const getAll = async () => {
 
 
 export const update = async (book: any, shelf: any) => {
-    const res = await fetch(`${api}/books/${book.id}`, {
+    await fetch(`${api}/books/${book.id}`, {
         method: 'PUT',
         headers: {
             ...headers,
