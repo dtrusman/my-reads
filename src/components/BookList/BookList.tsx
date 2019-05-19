@@ -30,12 +30,21 @@ export default class BookList extends Component<Props, State> {
     async componentDidMount() {
         const { list } = this.props;
 
+        this.updateList(list);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.updateList(nextProps.list);
+    }
+
+    updateList = async list => {
         const p = list.map(async item => {
             return await this.mutateList(item);
         });
-        const changedList = await Promise.all(p);
-        this.setState({ bookList: changedList, loading: false });
 
+        const changedList = await Promise.all(p);
+
+        this.setState({ bookList: changedList, loading: false });
     }
 
     mutateList = (item) => {
