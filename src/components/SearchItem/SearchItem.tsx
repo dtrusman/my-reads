@@ -10,6 +10,7 @@ interface Props {
 
 interface State {
     loading: boolean;
+    currentShelf: string | null;
 }
 
 export default class SearchItem extends Component<Props, State> {
@@ -18,7 +19,8 @@ export default class SearchItem extends Component<Props, State> {
         super(props);
 
         this.state = {
-            loading: false
+            loading: false,
+            currentShelf: null
         }
     }
 
@@ -30,13 +32,14 @@ export default class SearchItem extends Component<Props, State> {
         const shelfID = evt.target.value;
         await API.update(item, shelfID);
 
-        this.setState({ loading: false });
+        this.setState({ loading: false, currentShelf: shelfID });
     }
 
     renderBook = () => {
         const { item } = this.props;
+        const { currentShelf } = this.state;
 
-        const srcImage = item.imageLinks ? item.imageLinks.thumbnail : imageNotFound;
+        const srcImage = item && item.imageLinks ? item.imageLinks.thumbnail : imageNotFound;
 
         return (
             <div className="book-search-container">
@@ -46,9 +49,9 @@ export default class SearchItem extends Component<Props, State> {
                     <div className="card-authors">{item.authors}</div>
                 </div>
                 <div className="changer-container">
-                    <Badge text={item.shelf} />
+                    <Badge text={currentShelf ? currentShelf : item.shelf} />
                     <div className="add-book-container">
-                        <Changer enableNone={false} onChooseOption={this.handleChangeShelf} />
+                        <Changer disableOptions={currentShelf ? currentShelf : item.shelf} onChooseOption={this.handleChangeShelf} />
                     </div>
                 </div>
             </div>
