@@ -10,3 +10,26 @@
     margin-top: 5px;
     text-align: center;
 }
+
+.card-shelf {
+    height: 25px;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 5px;
+}
+
+.badge-read {
+    background-color: green;
+}
+
+.badge-want {
+    background-color: red;
+}
+
+.badge-reading {
+    background-color: blue;
+}

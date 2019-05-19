@@ -23,6 +23,7 @@
     display: flex;
     justify-content: center;
     text-align: center;
+    font-size: 14px;
 }
 
 .image-container {
@@ -30,7 +31,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 9rem;
+    height: 8rem;
 }
 
 .image {
@@ -40,7 +41,8 @@
 .changer-container {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    margin-top: 15px;
 }
 
 .add-book-container {

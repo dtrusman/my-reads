@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as API from '../../services/BooksAPI';
-import { Card, Changer, Loader } from '..';
+import { Card, Changer, Loader, Badge } from '..';
 import imageNotFound from '../../icons/image.png';
 
 import './SearchItem.css';
@@ -24,12 +24,12 @@ export default class SearchItem extends Component<Props, State> {
 
     handleChangeShelf = async evt => {
         const { item } = this.props;
-        
+
         this.setState({ loading: true });
 
         const shelfID = evt.target.value;
         await API.update(item, shelfID);
-        
+
         this.setState({ loading: false });
     }
 
@@ -46,6 +46,7 @@ export default class SearchItem extends Component<Props, State> {
                     <div className="card-authors">{item.authors}</div>
                 </div>
                 <div className="changer-container">
+                    <Badge text={item.shelf} />
                     <div className="add-book-container">
                         <Changer enableNone={false} onChooseOption={this.handleChangeShelf} />
                     </div>
@@ -59,7 +60,7 @@ export default class SearchItem extends Component<Props, State> {
 
         return (
             <Card>
-                { loading ? <Loader text="Adding book..." /> : this.renderBook() }
+                {loading ? <Loader text="Adding book..." /> : this.renderBook()}
             </Card>
         )
     }

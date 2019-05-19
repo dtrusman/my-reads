@@ -10,3 +10,4 @@ export { default as Loader } from './Loader/Loader';
 export { default as Changer } from './Changer/Changer';
 export { default as Empty } from './Empty/Empty';
 export { default as SearchBar } from './SearchBar/SearchBar';
+export { default as Badge } from './Badge/Badge';
