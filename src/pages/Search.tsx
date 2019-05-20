@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BookList, Loader, Empty, SearchBar } from '../components';
+import { debounce } from 'throttle-debounce';
 import * as API from '../services/BooksAPI';
 import './Search.css';
 
@@ -7,37 +8,33 @@ interface Props { }
 
 interface State {
     bookList: [];
-    text: string;
+    query: string;
     loading: boolean;
 }
 
 export default class Search extends Component<Props, State> {
+    searchDebounce: any;
 
     constructor(props) {
         super(props);
 
         this.state = {
             bookList: [],
-            text: '',
+            query: '',
             loading: false
         }
+
+        this.searchDebounce = debounce(250, this._fetchItems);
     }
 
-    handleChange = text => {
-        this.setState(oldState => ({
-            text,
-            bookList: text.length <= 3 ? [] : oldState.bookList
-        }));
+    handleChange = query => {
+        const searchQuery = query ? query : '';
+        this.setState({ query: searchQuery }, () => { this.searchDebounce(this.state.query) });
     }
 
-    handleKeyPress = async evt => {
-        const { text } = this.state;
-
-        if (evt.key === 'Enter' || evt.type === 'click') {
-            this.setState({ loading: true });
-            const result = text.length ? await API.search(text) : [];
-            this.setState({ bookList: result, loading: false });
-        }
+    _fetchItems = async query => {
+        const result = query && query.length ? await API.search(query) : [];
+        this.setState({ bookList: result });
     }
 
     renderBookGrid = bookList => {
@@ -52,7 +49,7 @@ export default class Search extends Component<Props, State> {
 
         return (
             <div className="search-books">
-                <SearchBar handleChange={this.handleChange} handleKeyPress={this.handleKeyPress} />
+                <SearchBar handleChange={this.handleChange} />
 
                 <div className="search-books-results">
                     {loading ? <Loader text="Loading..." /> : this.renderBookGrid(bookList)}

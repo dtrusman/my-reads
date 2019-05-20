@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Input, Button } from '..';
+import { Input } from '..';
 
 interface Props {
     handleChange: Function;
-    handleKeyPress: Function;
+    handleKeyPress?: Function;
 }
 
 interface State {
@@ -26,10 +26,6 @@ export default class SearchBar extends Component<Props, State> {
         this.props.handleChange(value);
     }
 
-    handleEnter = evt => {
-        this.props.handleKeyPress(evt);
-    }
-
     render() {
         return (
             <div className="search-books-bar">
@@ -42,11 +38,8 @@ export default class SearchBar extends Component<Props, State> {
                         type="text"
                         placeholder="Search by title or author"
                         onChange={this.handleChange}
-                        onKeyPress={this.handleEnter}
                     />
                 </div>
-
-                <Button className="search-icon" onClick={this.handleEnter} />
             </div>
         )
     }

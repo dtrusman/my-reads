@@ -33,10 +33,6 @@ export default class BookList extends Component<Props, State> {
         this.updateList(list);
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.updateList(nextProps.list);
-    }
-
     updateList = async list => {
         const p = list.map(async item => {
             return await this.mutateList(item);
