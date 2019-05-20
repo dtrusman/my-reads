@@ -44,13 +44,13 @@ export default class Main extends Component<Props, State> {
     }
 
     updateList = async (item, shelfId) => {
-        this.setState({ loadingItem: true });
+        // this.setState({ loadingItem: true });
 
         await API.update(item, shelfId);
 
         const list = await API.getAll();
 
-        this.setState({ bookList: list, loadingItem: false });
+        this.setState({ bookList: list });
     }
 
     renderShelves = bookList => {

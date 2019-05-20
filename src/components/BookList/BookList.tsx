@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BookItem, SearchItem, Loader } from '..';
-import * as API from '../../services/BooksAPI';
 
 export type ITEM_TYPE = "book" | "search";
 
@@ -23,35 +22,19 @@ export default class BookList extends Component<Props, State> {
 
         this.state = {
             bookList: [],
-            loading: true
+            loading: false
         }
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         const { list } = this.props;
-
-        this.updateList(list);
+        this.setState({bookList: list});
     }
 
-    updateList = async list => {
-        const p = list.map(async item => {
-            return await this.mutateList(item);
-        });
-
-        const changedList = await Promise.all(p);
-
-        this.setState({ bookList: changedList, loading: false });
-    }
-
-    mutateList = (item) => {
-        return new Promise(async (resolve, reject) => {
-
-            if (!item.shelf) {
-                resolve(await API.get(item.id));
-            }
-
-            resolve(item);
-        });
+    static getDerivedStateFromProps(props, state) {
+        return {
+            bookList: props.list
+        }
     }
 
     renderItem = item => {

@@ -11,6 +11,7 @@ interface Props {
 interface State {
     loading: boolean;
     currentShelf: string | null;
+    item: any;
 }
 
 export default class SearchItem extends Component<Props, State> {
@@ -20,12 +21,19 @@ export default class SearchItem extends Component<Props, State> {
 
         this.state = {
             loading: false,
-            currentShelf: null
+            currentShelf: null,
+            item: null
         }
     }
 
-    handleChangeShelf = async evt => {
+    async componentDidMount() {
         const { item } = this.props;
+        const itemData = await API.get(item.id);
+        this.setState({ item: itemData });
+    }
+
+    handleChangeShelf = async evt => {
+        const { item } = this.state;
 
         this.setState({ loading: true });
 
@@ -36,26 +44,28 @@ export default class SearchItem extends Component<Props, State> {
     }
 
     renderBook = () => {
-        const { item } = this.props;
+        const { item } = this.state;
         const { currentShelf } = this.state;
 
         const srcImage = item && item.imageLinks ? item.imageLinks.thumbnail : imageNotFound;
 
-        return (
-            <div className="book-search-container">
-                <div className="card-title">{item.title}</div>
-                <div className="image-container">
-                    <img className="image" src={srcImage} alt={item.title} />
-                    <div className="card-authors">{item.authors}</div>
-                </div>
-                <div className="changer-container">
-                    <Badge text={currentShelf ? currentShelf : item.shelf} />
-                    <div className="add-book-container">
-                        <Changer disableOptions={currentShelf ? currentShelf : item.shelf} onChooseOption={this.handleChangeShelf} />
+        if (item) {
+            return (
+                <div className="book-search-container">
+                    <div className="card-title">{item.title}</div>
+                    <div className="image-container">
+                        <img className="image" src={srcImage} alt={item.title} />
+                        <div className="card-authors">{item.authors}</div>
+                    </div>
+                    <div className="changer-container">
+                        <Badge text={currentShelf ? currentShelf : item.shelf} />
+                        <div className="add-book-container">
+                            <Changer disableOptions={currentShelf ? currentShelf : item.shelf} onChooseOption={this.handleChangeShelf} />
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        }
     }
 
     render() {
