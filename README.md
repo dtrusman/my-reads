@@ -1,3 +1,6 @@
+# My Reads App
+This is an app for organizing your books on shelves. You can able to categorize your books in three shelves Currently Reading, Want to Read and Read and you can search books by name, authors and add it on your shelf.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
