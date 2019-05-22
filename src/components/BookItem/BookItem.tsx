@@ -23,7 +23,7 @@ const BookItem = (props: Props) => {
                 <div className="book-top">
                     <img className="book-cover" src={item.imageLinks.thumbnail} alt={item.title} />
                     <div className="book-shelf-changer">
-                        <Changer onChooseOption={handleChangeShelf} />
+                        <Changer defaultValue={item.shelf} onChooseOption={handleChangeShelf} />
                     </div>
                 </div>
                 <div className="book-title">{item.title}</div>

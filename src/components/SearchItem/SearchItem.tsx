@@ -60,7 +60,7 @@ export default class SearchItem extends Component<Props, State> {
                     <div className="changer-container">
                         <Badge text={currentShelf ? currentShelf : item.shelf} />
                         <div className="add-book-container">
-                            <Changer disableOptions={currentShelf ? currentShelf : item.shelf} onChooseOption={this.handleChangeShelf} />
+                            <Changer defaultValue={currentShelf ? currentShelf : item.shelf} onChooseOption={this.handleChangeShelf} />
                         </div>
                     </div>
                 </div>

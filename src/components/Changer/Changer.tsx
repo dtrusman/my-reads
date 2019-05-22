@@ -2,25 +2,24 @@ import React from 'react';
 import { SHELVES } from '../../pages/Main';
 
 interface Props {
-    disableOptions?: string;
+    defaultValue?: string;
     onChooseOption: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Changer = ({ disableOptions, onChooseOption } : Props) => {
+const Changer = ({ defaultValue, onChooseOption } : Props) => {
 
     const renderOptions = () => {
-        const shelves = SHELVES.filter(s => s.id !== disableOptions);
-        return shelves.map(shelf => (
-            <option key={shelf.id} value={shelf.id}>{shelf.name}</option>
-        ));
+        return SHELVES.map(shelf => {
+            return <option key={shelf.id} value={shelf.id}>{shelf.name}</option>
+        });
     }
 
-    const handleClick = evt => {
+    const handleChange = evt => {
         onChooseOption(evt);
     }
 
     return (
-        <select onClick={handleClick}>
+        <select onChange={handleChange} defaultValue={defaultValue}>
             <option key="move" value="move" disabled>Move to...</option>
             {renderOptions()}
         </select>
