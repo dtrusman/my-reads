@@ -11,14 +11,7 @@ export const SHELVES = [
     { id: 'none', name: 'None' }
 ];
 
-interface Props { }
-interface State {
-    bookList: any[],
-    loading: boolean,
-    loadingItem: boolean
-}
-
-export default class Main extends Component<Props, State> {
+export default class Main extends Component {
 
     constructor(props) {
         super(props);

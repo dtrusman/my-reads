@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import { BookList, Empty } from '..';
 
-interface Props {
-    name: string;
-    bookList: any[];
-    onUpdateList?: any;
-    loadingItem?: boolean;
-}
-
-export default class Shelf extends Component<Props> {
+export default class Shelf extends Component {
 
     renderBookList = () => {
         const { bookList, onUpdateList, loadingItem } = this.props;

@@ -1,12 +1,7 @@
 import React from 'react';
 import './Loader.css';
 
-interface Props {
-    text?: string;
-    className?: string;
-}
-
-export default function Loader(props: Props) {
+export default function Loader(props) {
     return (
         <div className="container">
             <div className={`loader ${props.className}`}></div>

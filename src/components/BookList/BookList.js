@@ -1,21 +1,7 @@
 import React, { Component } from 'react';
 import { BookItem, SearchItem, Loader } from '..';
 
-export type ITEM_TYPE = "book" | "search";
-
-interface Props {
-    list: any[];
-    type: ITEM_TYPE;
-    updateBookList?: any;
-    loadingItem?: boolean;
-}
-
-interface State {
-    bookList: {}[];
-    loading: boolean;
-}
-
-export default class BookList extends Component<Props, State> {
+export default class BookList extends Component {
 
     constructor(props) {
         super(props);

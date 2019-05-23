@@ -11,7 +11,7 @@ const headers = {
     'Authorization': token
 }
 
-export const get = async (bookId: any) => {
+export const get = async (bookId) => {
     const res = await fetch(`${api}/books/${bookId}`, { headers });
     const data = await res.json();
 
@@ -27,7 +27,7 @@ export const getAll = async () => {
 }
 
 
-export const update = async (book: any, shelf: any) => {
+export const update = async (book, shelf) => {
     await fetch(`${api}/books/${book.id}`, {
         method: 'PUT',
         headers: {
@@ -38,7 +38,7 @@ export const update = async (book: any, shelf: any) => {
     });
 }
 
-export const search = async (query: string) => {
+export const search = async (query) => {
     const res = await fetch(`${api}/search`, {
         method: 'POST',
         headers: {

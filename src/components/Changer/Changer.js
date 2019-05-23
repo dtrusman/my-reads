@@ -1,12 +1,7 @@
 import React from 'react';
 import { SHELVES } from '../../pages/Main';
 
-interface Props {
-    defaultValue?: string;
-    onChooseOption: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-const Changer = ({ defaultValue, onChooseOption } : Props) => {
+const Changer = ({ defaultValue, onChooseOption }) => {
 
     const renderOptions = () => {
         return SHELVES.map(shelf => {

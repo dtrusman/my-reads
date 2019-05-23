@@ -2,13 +2,7 @@ import React from 'react';
 import { Changer, Loader } from '..'
 import './BookItem.css';
 
-interface Props {
-    item: any;
-    updateItem?: any;
-    loading?: boolean;
-}
-
-const BookItem = (props: Props) => {
+const BookItem = (props) => {
 
     const { item, updateItem, loading } = props;
 

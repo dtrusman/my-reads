@@ -4,16 +4,9 @@ import { debounce } from 'throttle-debounce';
 import * as API from '../services/BooksAPI';
 import './Search.css';
 
-interface Props { }
 
-interface State {
-    bookList: [];
-    query: string;
-    loading: boolean;
-}
-
-export default class Search extends Component<Props, State> {
-    searchDebounce: any;
+export default class Search extends Component {
+    searchDebounce;
 
     constructor(props) {
         super(props);

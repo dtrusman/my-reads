@@ -2,16 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Input } from '..';
 
-interface Props {
-    handleChange: Function;
-    handleKeyPress?: Function;
-}
-
-interface State {
-    text: string;
-}
-
-export default class SearchBar extends Component<Props, State> {
+export default class SearchBar extends Component {
 
     constructor(props) {
         super(props);

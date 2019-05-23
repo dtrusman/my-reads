@@ -1,11 +1,6 @@
 import React from 'react';
 
-interface Props {
-    text: string;
-    className?: string;
-}
-
-const Empty = ({text, className}: Props) => {
+const Empty = ({text, className}) => {
     return (
         <div className={className}> {text} </div>
     )

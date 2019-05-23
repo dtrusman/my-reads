@@ -6,10 +6,7 @@ import { Main, Search } from './pages';
 
 const title = 'My Reads';
 
-interface Props { }
-interface State { }
-
-export default class App extends Component<Props, State> {
+export default class App extends Component {
     
     render() {
         return (

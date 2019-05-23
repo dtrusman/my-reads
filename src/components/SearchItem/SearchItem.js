@@ -4,17 +4,8 @@ import { Card, Changer, Loader, Badge } from '..';
 import imageNotFound from '../../icons/image.png';
 
 import './SearchItem.css';
-interface Props {
-    item: any;
-}
 
-interface State {
-    loading: boolean;
-    currentShelf: string | null;
-    item: any;
-}
-
-export default class SearchItem extends Component<Props, State> {
+export default class SearchItem extends Component {
 
     constructor(props) {
         super(props);

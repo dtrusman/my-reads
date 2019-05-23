@@ -1,10 +1,6 @@
 import React from 'react';
 
-interface Props {
-    text: string;
-}
-
-const Badge = (props: Props) => {
+const Badge = (props) => {
 
     let className;
     switch (props.text) {
@@ -16,6 +12,8 @@ const Badge = (props: Props) => {
             break;
         case 'currentlyReading':
             className = 'badge-reading';
+            break;
+        default:
             break;
     }
 
